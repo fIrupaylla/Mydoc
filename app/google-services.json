@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "530577827475",
+    "project_id": "esan2024-954dc",
+    "storage_bucket": "esan2024-954dc.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:530577827475:android:8fc61ac075c8029b824f66",
+        "android_client_info": {
+          "package_name": "com.example.proyectofinaldam"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCzDsDFRUJ0615pUE5htdGzGJdPNkmKlss"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:530577827475:android:1e7268b753e2a59b824f66",
+        "android_client_info": {
+          "package_name": "dev.danieldelgado.firebasesem9"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCzDsDFRUJ0615pUE5htdGzGJdPNkmKlss"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

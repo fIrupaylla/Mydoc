@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <!-- Tema principal de la aplicación -->
+    <style name="Theme.ProyectoFinalDAM" parent="Theme.AppCompat.Light.NoActionBar">
+        <!-- Colores y personalización del tema -->
+        <item name="colorPrimary">@color/colorBrownDark</item>
+        <item name="colorPrimaryDark">@color/colorPink</item>
+        <item name="colorAccent">#03DAC5</item>
+    </style>
+
+    <style name="CustomToolbarStyle" parent="Widget.AppCompat.Toolbar">
+        <item name="titleTextColor">@color/white</item> <!-- Cambia @color/white por el color que prefieras -->
+    </style>
+
+    <style name="Theme.ProyectoFinalDAM.NoActionBar">
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
+    </style>
+
+    <style name="Theme.ProyectoFinalDAM.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
+
+    <style name="Theme.ProyectoFinalDAM.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
+
+</resources>
