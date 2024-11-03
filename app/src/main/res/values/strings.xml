@@ -11,8 +11,14 @@
     <string name="action_settings">Settings</string>
 
     <string name="menu_home">Home</string>
-    <string name="menu_gallery">Gallery</string>
+    <string name="menu_estadoConsultas">Estado de Consultas</string>
     <string name="menu_slideshow">Slideshow</string>
+    <string-array name="estado_array">
+        <item>Registrado</item>
+        <item>En Proceso</item>
+        <item>Terminado</item>
+        <item>Cancelado</item>
+    </string-array>
     <string name="menu_reservarcita">Reservar Cita</string>
     <string name="menu_visualizarcita">Visualizar Cita</string>
 </resources>

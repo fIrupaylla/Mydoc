@@ -55,6 +55,7 @@ class LoginActivity : AppCompatActivity() {
                             findViewById(android.R.id.content),
                             "Authentication failed.",
                             Snackbar.LENGTH_SHORT).show()
+                        //startActivity(Intent(this, PrincipalActivity::class.java))
                     }
                 }
         }

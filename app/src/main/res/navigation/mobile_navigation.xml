@@ -12,10 +12,10 @@
         tools:layout="@layout/fragment_home" />
 
     <fragment
-        android:id="@+id/nav_gallery"
-        android:name="com.example.proyectofinaldam.ui.gallery.GalleryFragment"
-        android:label="@string/menu_gallery"
-        tools:layout="@layout/fragment_gallery" />
+        android:id="@+id/nav_estadoConsultas"
+        android:name="com.example.proyectofinaldam.ui.estado_de_consultas.EstadoDeConsultasFragment"
+        android:label="@string/menu_estadoConsultas"
+        tools:layout="@layout/fragment_estadodeconsultas" />
 
     <fragment
         android:id="@+id/nav_slideshow"
