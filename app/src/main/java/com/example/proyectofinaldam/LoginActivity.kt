@@ -51,11 +51,11 @@ class LoginActivity : AppCompatActivity() {
                     }else {
                         // If sign in fails, display a message to the user.
                         //Message in snackbar
-                        ////Snackbar.make(
-                            ////findViewById(android.R.id.content),
-                            ////"Authentication failed.",
-                            ////Snackbar.LENGTH_SHORT).show()
-                        startActivity(Intent(this, PrincipalActivity::class.java))
+                        Snackbar.make(
+                            findViewById(android.R.id.content),
+                            "Authentication failed.",
+                            Snackbar.LENGTH_SHORT).show()
+                        //startActivity(Intent(this, PrincipalActivity::class.java))
                     }
                 }
         }
