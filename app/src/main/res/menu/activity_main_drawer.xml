@@ -20,5 +20,9 @@
             android:id="@+id/nav_reservarcita"
             android:icon="@drawable/ic_menu_reservarcita"
             android:title="@string/menu_reservarcita" />
+        <item
+            android:id="@+id/nav_visualizarcita"
+            android:icon="@drawable/ic_menu_visualizarcita"
+            android:title="@string/menu_visualizarcita" />
     </group>
 </menu>
