@@ -14,9 +14,9 @@
     <string name="menu_estadoConsultas">Estado de Consultas</string>
     <string name="menu_slideshow">Slideshow</string>
     <string-array name="estado_array">
-        <item>REGISTRADO</item>
-        <item>EN PROCESO</item>
-        <item>TERMINADO</item>
-        <item>CANCELADO</item>
+        <item>Registrado</item>
+        <item>En Proceso</item>
+        <item>Terminado</item>
+        <item>Cancelado</item>
     </string-array>
 </resources>

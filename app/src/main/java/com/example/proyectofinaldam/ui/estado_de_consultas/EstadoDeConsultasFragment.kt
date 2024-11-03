@@ -23,45 +23,32 @@ class EstadoDeConsultasFragment : Fragment() {
     ): View {
         // Inflate the layout for this fragment
         val view: View =  inflater.inflate(R.layout.fragment_estadodeconsultas, container, false)
-        val view1: View =  inflater.inflate(R.layout.item_consulta_estado_clie, container, false)
-
-        val spEstado: Spinner = view1.findViewById(R.id.spEstado)
-        ArrayAdapter
-            .createFromResource(requireContext(),R.array.estado_array,
-                android.R.layout.simple_spinner_item).also {
-                    adapter ->
-                adapter.setDropDownViewResource(
-                    android.R.layout.simple_spinner_dropdown_item)
-                spEstado.adapter = adapter
-            }
-        //spCountry on ItemSelectedListener
-        var spEstadoValue = ""
-
-        spEstado.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
-            override fun onItemSelected(parent: AdapterView<*>?, p1: View?, position: Int, p3: Long) {
-                spEstadoValue = parent?.getItemAtPosition(position).toString()
-            }
-
-            override fun onNothingSelected(p0: AdapterView<*>?) {
-                TODO("Not yet implemented")
-            }
-        }
-
-        spEstado.setSelection(0, false)
+        //val view1: View =  inflater.inflate(R.layout.item_consulta_estado_clie, container, false)
 
 
         val rvActEstCliente: RecyclerView = view.findViewById(R.id.rvActEstCliente)
         rvActEstCliente.layoutManager = LinearLayoutManager(requireContext())
         rvActEstCliente.adapter = EstadoDeConsultasAdapter(ListPaciente())
 
+        //val recyclerView: RecyclerView = findViewById(R.id.rvActEstCliente)
+        //val items = listOf(
+        //    EstadoDeConsultasModel(1, "Elemento 1"),
+        //    EstadoDeConsultasModel(2, "Elemento 2"),
+        //    EstadoDeConsultasModel(3, "Elemento 3")
+        //)
+        //val adapter = MiAdapter(items)
+        //recyclerView.layoutManager = LinearLayoutManager(this)
+        //recyclerView.adapter = adapter
+
         return view
+        //return view1
     }
 
     private fun ListPaciente(): List<EstadoDeConsultasModel>{
-        var lstSong: ArrayList<EstadoDeConsultasModel> = ArrayList()
+        var lstPaciente: ArrayList<EstadoDeConsultasModel> = ArrayList()
 
 
-        lstSong.add(
+        lstPaciente.add(
                 EstadoDeConsultasModel(
                     "Sab"
                     ,"02"
@@ -69,7 +56,7 @@ class EstadoDeConsultasFragment : Fragment() {
                     ,"2024-10001"
                     ,"Melissa Luyo Cárdenas"
                     , "FINALIZADO"))
-        lstSong.add(
+        lstPaciente.add(
             EstadoDeConsultasModel(
                 "Dom"
                 ,"03"
@@ -77,7 +64,7 @@ class EstadoDeConsultasFragment : Fragment() {
                 ,"2024-10002"
                 ,"Henry Paul Gomez Esquivez"
                 , "EN PROCESO"))
-        lstSong.add(
+        lstPaciente.add(
             EstadoDeConsultasModel(//3,R.drawable.susuki
                 //,"Jorge Fossati"
                 "Mie"
@@ -86,7 +73,7 @@ class EstadoDeConsultasFragment : Fragment() {
                 ,"2024-10003…"
                 ,"Joan Chipana Cárdenas"
                 , "PROGRAMADO"))
-        lstSong.add(
+        lstPaciente.add(
             EstadoDeConsultasModel(//1,R.drawable.mercedes
                 //,"Edison Flores"
                 "Mar"
@@ -95,7 +82,7 @@ class EstadoDeConsultasFragment : Fragment() {
                 ,"2024-10004"
                 ,"Lucinda Diaz Melendez "
                 , "PROGRAMADO"))
-        lstSong.add(
+        lstPaciente.add(
             EstadoDeConsultasModel(//1,R.drawable.mercedes
                 //,"Edison Flores"
                 "Jue"
@@ -104,6 +91,6 @@ class EstadoDeConsultasFragment : Fragment() {
                 ,"2024-10005"
                 ,"Melissa Luyo Cárdenas "
                 , "PROGRAMADO"))
-        return lstSong
+        return lstPaciente
     }
 }

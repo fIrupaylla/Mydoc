@@ -7,7 +7,7 @@
 
     <Spinner
         android:id="@+id/spEstado"
-        android:layout_width="133dp"
+        android:layout_width="168dp"
         android:layout_height="19dp"
         android:layout_marginStart="20dp"
         android:layout_marginTop="4dp"

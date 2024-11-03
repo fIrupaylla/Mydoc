@@ -6,4 +6,5 @@ data class EstadoDeConsultasModel(
     val hora:String,
     val cita: String,
     val paciente: String,
-    val Estado: String)
+    var estado: String
+)
