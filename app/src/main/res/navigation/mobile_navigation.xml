@@ -22,4 +22,16 @@
         android:name="com.example.proyectofinaldam.ui.slideshow.SlideshowFragment"
         android:label="@string/menu_slideshow"
         tools:layout="@layout/fragment_slideshow" />
+
+    <fragment
+        android:id="@+id/nav_reservarcita"
+        android:name="com.example.proyectofinaldam.ui.reservarcita.ReservarcitaFragment"
+        android:label="@string/menu_reservarcita"
+        tools:layout="@layout/fragment_reservarcita" />
+
+    <fragment
+        android:id="@+id/nav_visualizarcita"
+        android:name="com.example.proyectofinaldam.ui.visualizarcita.VisualizarcitaFragment"
+        android:label="@string/menu_visualizarcita"
+        tools:layout="@layout/fragment_visualizarcita" />
 </navigation>
