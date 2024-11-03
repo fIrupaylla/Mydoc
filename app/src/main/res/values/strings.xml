@@ -19,4 +19,6 @@
         <item>Terminado</item>
         <item>Cancelado</item>
     </string-array>
+    <string name="menu_reservarcita">Reservar Cita</string>
+    <string name="menu_visualizarcita">Visualizar Cita</string>
 </resources>
