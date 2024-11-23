@@ -10,4 +10,6 @@
     <color name="colorPink">#ffa59e</color>
     <color name="colorBrownLigth">#d1c9b6</color>
     <color name="colorBrownDark">#595343</color>
+    <color name="colorGray">#8a8a8a</color>
+    <color name="colorGrayLight">#D3DCDCDC</color>
 </resources>

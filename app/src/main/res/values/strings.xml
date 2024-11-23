@@ -21,4 +21,7 @@
     </string-array>
     <string name="menu_reservarcita">Reservar Cita</string>
     <string name="menu_visualizarcita">Visualizar Cita</string>
+    <string name="menu_historialcita">Historial de Citas</string>
+<!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>
