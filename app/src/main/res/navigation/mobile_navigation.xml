@@ -34,4 +34,21 @@
         android:name="com.example.proyectofinaldam.ui.visualizarcita.VisualizarcitaFragment"
         android:label="@string/menu_visualizarcita"
         tools:layout="@layout/fragment_visualizarcita" />
+
+    <fragment
+        android:id="@+id/nav_historial_citas"
+        android:name="com.example.proyectofinaldam.ui.historialcitas.HistorialCitasFragment"
+        android:label="@string/menu_historialcita"
+        tools:layout="@layout/fragment_historial_citas">
+        <action
+            android:id="@+id/action_historialCitasFragment_to_detalleCitaFragment"
+            app:destination="@id/detalleCitaFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/detalleCitaFragment"
+        android:name="com.example.proyectofinaldam.ui.detalle_cita.DetalleCitaFragment"
+        android:label="Detalle de Cita"
+        tools:layout="@layout/fragment_detalle_cita" />
+
 </navigation>

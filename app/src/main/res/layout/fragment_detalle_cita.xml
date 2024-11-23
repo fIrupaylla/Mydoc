@@ -30,11 +30,12 @@
                 android:layout_marginStart="8dp">
 
                 <TextView
+                    android:id="@+id/tvDoctorName"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Cardiólogo"
-                    android:textStyle="bold"
-                    android:textSize="16sp" />
+                    android:text="Dr. Daniel Delgado"
+                    android:textSize="16sp"
+                    android:textStyle="bold" />
 
                 <LinearLayout
                     android:layout_width="wrap_content"
@@ -50,11 +51,12 @@
                         android:layout_marginRight="4dp"/>
 
                     <TextView
+                        android:id="@+id/tvAppointmentTime"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="Mañana a las 8:00 AM"
-                        android:textSize="14sp"
-                        android:textColor="#666" />
+                        android:textColor="#666"
+                        android:textSize="14sp" />
                 </LinearLayout>
             </LinearLayout>
 
@@ -86,11 +88,34 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Distancia"
+                    android:text="Estado"
                     android:textSize="14sp"
                     android:textColor="#666" />
 
                 <TextView
+                    android:id="@+id/tvEstado"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Programada"
+                    android:textSize="16sp"
+                    android:textStyle="bold" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:layout_marginEnd="16dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Especialidad"
+                    android:textSize="14sp"
+                    android:textColor="#666" />
+
+                <TextView
+                    android:id="@+id/tvSpecialty"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="12.00"
@@ -106,11 +131,12 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Tiempo"
+                    android:text="Descripcion"
                     android:textSize="14sp"
                     android:textColor="#666" />
 
                 <TextView
+                    android:id="@+id/tvDescription"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="30m"
@@ -130,12 +156,13 @@
 
         <!-- Dirección -->
         <TextView
+            android:id="@+id/tvAddress"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginBottom="16dp"
             android:text="Av. Javier Prado 2445, San Borja"
-            android:textSize="14sp"
             android:textColor="#666"
-            android:layout_marginBottom="16dp" />
+            android:textSize="14sp" />
 
         <!-- Botones de interacción -->
         <LinearLayout
@@ -149,13 +176,17 @@
 
             <!-- Botón Like -->
             <LinearLayout
+                android:id="@+id/avisarmeButton"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:orientation="horizontal"
                 android:gravity="center"
                 android:background="@drawable/button_border"
-                android:padding="8dp">
+                android:padding="8dp"
+                android:clickable="true"
+                android:focusable="true"
+                android:foreground="?attr/selectableItemBackground">
 
                 <ImageView
                     android:layout_width="24dp"
@@ -179,19 +210,23 @@
 
             <!-- Botón Comment -->
             <LinearLayout
+                android:id="@+id/comentarioButton"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:orientation="horizontal"
                 android:gravity="center"
                 android:background="@drawable/button_border"
-                android:padding="8dp">
+                android:padding="8dp"
+                android:clickable="true"
+                android:focusable="true"
+                android:foreground="?attr/selectableItemBackground"> <!-- Efecto visual al presionar -->
 
                 <ImageView
                     android:layout_width="24dp"
                     android:layout_height="24dp"
                     android:src="@drawable/icon_comment_white"
-                    android:layout_marginEnd="6dp"/> <!-- Cambia este icono por el tuyo -->
+                    android:layout_marginEnd="6dp" /> <!-- Cambia este icono por el tuyo -->
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -209,13 +244,17 @@
 
             <!-- Botón Share -->
             <LinearLayout
+                android:id="@+id/descargarButton"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:orientation="horizontal"
                 android:gravity="center"
                 android:background="@drawable/button_border"
-                android:padding="8dp">
+                android:padding="8dp"
+                android:clickable="true"
+                android:focusable="true"
+                android:foreground="?attr/selectableItemBackground"> <!-- Agregar feedback visual al clic -->
 
                 <ImageView
                     android:layout_width="24dp"
@@ -234,6 +273,7 @@
 
         <!-- Botón de cancelar cita -->
         <Button
+            android:id="@+id/cancelarButton"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Cancelar cita"
