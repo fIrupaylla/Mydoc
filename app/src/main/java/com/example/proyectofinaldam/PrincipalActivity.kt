@@ -15,6 +15,7 @@ import androidx.drawerlayout.widget.DrawerLayout
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
 import com.example.proyectofinaldam.databinding.ActivityPrincipalBinding
+import com.example.proyectofinaldam.datastore.UserDataStore
 import com.google.firebase.auth.FirebaseAuth
 
 class PrincipalActivity : AppCompatActivity() {
@@ -25,10 +26,15 @@ class PrincipalActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        supportActionBar?.setBackgroundDrawable(ColorDrawable(ContextCompat.getColor(this, R.color.colorPink)))
-
-        val auth = FirebaseAuth.getInstance()
-        val currentUser = auth.currentUser
+        supportActionBar?.setBackgroundDrawable(
+            ColorDrawable(
+                ContextCompat.getColor(
+                    this,
+                    R.color.colorPink
+                )
+            )
+        )
+        val currentUser = UserDataStore.getUserData(this)
 
         binding = ActivityPrincipalBinding.inflate(layoutInflater)
         setContentView(binding.root)
@@ -65,8 +71,8 @@ class PrincipalActivity : AppCompatActivity() {
 
         // Verifica si hay un usuario autenticado y actualiza los TextViews
         if (currentUser != null) {
-            nameTextView.text = currentUser.displayName ?: "Usuario"
-            emailTextView.text = currentUser.email ?: "Email no disponible"
+            nameTextView.text = "Nombre: ${currentUser["nombre"]} ${currentUser["apellido"]}"
+            emailTextView.text = "Correo: ${currentUser["email"]}"
         } else {
             nameTextView.text = "Invitado"
             emailTextView.text = "Invitado@example.com"
