@@ -81,5 +81,5 @@ dependencies {
     implementation(platform("com.google.firebase:firebase-bom:33.5.1"))
     //Add Picasso (no libs)
     implementation("com.squareup.picasso:picasso:2.8")
-
+    implementation(libs.androidx.datastore.preferences)
 }
