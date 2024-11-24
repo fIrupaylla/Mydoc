@@ -1,29 +1,25 @@
-package com.example.proyectofinaldam.ui.reservarcita
+package com.example.proyectofinaldam.ui.reservarcita.adapter
 
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Button
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.proyectofinaldam.R
+import com.example.proyectofinaldam.ui.reservarcita.model.Doctor
 
-data class Doctor(
-    val name: String,
-    val specialty: String,
-    val officeNumber: String,
-    val imageResId: Int, // Drawable resource ID for doctor's image
-    val isAvailable: Boolean // True if doctor is available
-)
-
-class DoctorAdapter(private val doctors: List<Doctor>) :
-    RecyclerView.Adapter<DoctorAdapter.DoctorViewHolder>() {
+class DoctorAdapter(
+    private val doctors: List<Doctor>,
+    private val onDoctorSelected: (Doctor) -> Unit
+) : RecyclerView.Adapter<DoctorAdapter.DoctorViewHolder>() {
 
     inner class DoctorViewHolder(view: View) : RecyclerView.ViewHolder(view) {
         val doctorImage: ImageView = view.findViewById(R.id.iv_doctor_image)
         val doctorName: TextView = view.findViewById(R.id.tv_doctor_name)
         val doctorSpecialtyOffice: TextView = view.findViewById(R.id.tv_doctor_specialty_office)
-        val availabilityIcon: ImageView = view.findViewById(R.id.iv_availability)
+        val reserveButton: Button = view.findViewById(R.id.btn_reserve)
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): DoctorViewHolder {
@@ -36,9 +32,11 @@ class DoctorAdapter(private val doctors: List<Doctor>) :
         holder.doctorImage.setImageResource(doctor.imageResId)
         holder.doctorName.text = doctor.name
         holder.doctorSpecialtyOffice.text = "${doctor.specialty} - Office ${doctor.officeNumber}"
-        holder.availabilityIcon.setImageResource(
-            if (doctor.isAvailable) R.drawable.ic_available else R.drawable.ic_unavailable
-        )
+
+        // Configurar botón de reservar
+        holder.reserveButton.setOnClickListener {
+            onDoctorSelected(doctor)
+        }
     }
 
     override fun getItemCount(): Int = doctors.size

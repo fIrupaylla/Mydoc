@@ -1,15 +1,12 @@
+package com.example.proyectofinaldam.ui.visualizarcita.adapter
+
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.proyectofinaldam.R
-
-data class Appointment(
-    val time: String,
-    val patientName: String,
-    val status: String
-)
+import com.example.proyectofinaldam.ui.visualizarcita.model.Appointment
 
 class AppointmentAdapter(private val appointments: List<Appointment>) :
     RecyclerView.Adapter<AppointmentAdapter.AppointmentViewHolder>() {
