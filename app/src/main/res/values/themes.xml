@@ -6,7 +6,7 @@
         <!-- Colores y personalización del tema -->
         <item name="colorPrimary">@color/colorBrownDark</item>
         <item name="colorPrimaryDark">@color/colorPink</item>
-        <item name="colorAccent">#03DAC5</item>
+        <item name="colorAccent">#FDA49D</item>
     </style>
 
     <style name="CustomToolbarStyle" parent="Widget.AppCompat.Toolbar">

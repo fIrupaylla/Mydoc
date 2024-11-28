@@ -1,22 +1,39 @@
 package com.example.proyectofinaldam.ui.registrar_paciente
 
 import android.os.Bundle
-import android.service.autofill.OnClickAction
 import android.widget.Toast
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.compose.foundation.clickable
-import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.PaddingValues
+import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.shape.RoundedCornerShape
-import androidx.compose.material3.*
-import androidx.compose.runtime.*
+import androidx.compose.foundation.verticalScroll
+import androidx.compose.material3.Button
+import androidx.compose.material3.ButtonDefaults
+import androidx.compose.material3.Checkbox
+import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.OutlinedTextField
+import androidx.compose.material3.Text
+import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.input.PasswordVisualTransformation
 import androidx.compose.ui.unit.dp
-import com.google.firebase.annotations.concurrent.Background
+import androidx.compose.ui.unit.sp
 import com.google.firebase.firestore.FirebaseFirestore
 
 class RegistrarPacienteActivity : ComponentActivity() {
@@ -29,7 +46,14 @@ class RegistrarPacienteActivity : ComponentActivity() {
         setContent {
             MaterialTheme {
                 UserForm { nombres, apellidos, dni, email, phone, password ->
-                    saveToFirestore(nombres, apellidos, dni, email, phone, password)
+                    checkAndSavePatient(
+                        nombre = nombres,
+                        apellido = apellidos,
+                        dni = dni,
+                        email = email,
+                        phone = phone,
+                        password = password
+                    )
                 }
             }
         }
@@ -53,13 +77,42 @@ class RegistrarPacienteActivity : ComponentActivity() {
         )
 
         db.collection("pacientes")
-            .add(user)
+            .document(dni)
+            .set(user)
             .addOnSuccessListener {
                 Toast.makeText(this, "Datos guardados correctamente", Toast.LENGTH_SHORT).show()
                 finish()
             }
             .addOnFailureListener { e ->
                 Toast.makeText(this, "Error al guardar datos: ${e.message}", Toast.LENGTH_SHORT)
+                    .show()
+            }
+    }
+
+    private fun checkAndSavePatient(
+        dni: String, nombre: String, apellido: String, email: String, phone: String,
+        password: String
+    ) {
+        val db = FirebaseFirestore.getInstance()
+        db.collection("pacientes")
+            .whereEqualTo("DNI", dni)
+            .get()
+            .addOnSuccessListener { documents ->
+                if (!documents.isEmpty) {
+                    Toast.makeText(this, "El DNI ya está registrado.", Toast.LENGTH_SHORT).show()
+                } else {
+                    saveToFirestore(
+                        dni = dni,
+                        nombres = nombre,
+                        apellidos = apellido,
+                        email = email,
+                        phone = phone,
+                        password = password
+                    )
+                }
+            }
+            .addOnFailureListener { e ->
+                Toast.makeText(this, "Error al verificar el DNI: ${e.message}", Toast.LENGTH_SHORT)
                     .show()
             }
     }
@@ -84,9 +137,17 @@ fun UserForm(onSubmit: (String, String, String, String, String, String) -> Unit)
     Column(
         modifier = Modifier
             .fillMaxSize()
-            .padding(16.dp),
+            .padding(16.dp)
+            .verticalScroll(rememberScrollState()),  // Agregar scroll
         verticalArrangement = Arrangement.spacedBy(16.dp)
     ) {
+        Text(
+            text = "Registrar Paciente",
+            style = MaterialTheme.typography.headlineMedium.copy(
+                fontSize = 24.sp,
+                fontWeight = FontWeight.Bold
+            )
+        )
         OutlinedTextField(
             value = nombres,
             onValueChange = { nombres = it },
@@ -158,6 +219,7 @@ fun UserForm(onSubmit: (String, String, String, String, String, String) -> Unit)
 
         Button(
             onClick = {
+                // Validación de campos y envío
                 when {
                     nombres.isEmpty() || apellidos.isEmpty() || dni.isEmpty() || email.isEmpty() || phone.isEmpty() || password.isEmpty() || confirmPassword.isEmpty() -> {
                         errorMessage = "Todos los campos son obligatorios."
@@ -200,12 +262,6 @@ fun UserForm(onSubmit: (String, String, String, String, String, String) -> Unit)
                 color = Color.White
             )
         }
-        Button(
-            onClick = { (context as? RegistrarPacienteActivity)?.finish() },
-            modifier = Modifier
-                .fillMaxWidth()
-                .padding(top = 16.dp)
-        ) { Text(text = "Cancelar") }
         if (showError) {
             Text(
                 text = errorMessage,
@@ -214,5 +270,13 @@ fun UserForm(onSubmit: (String, String, String, String, String, String) -> Unit)
                 modifier = Modifier.padding(top = 8.dp)
             )
         }
+        Button(
+            onClick = { (context as? RegistrarPacienteActivity)?.finish() },
+            modifier = Modifier
+                .fillMaxWidth()
+                .padding(top = 16.dp)
+        ) { Text(text = "Cancelar") }
+
     }
+
 }

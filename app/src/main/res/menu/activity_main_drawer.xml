@@ -29,5 +29,9 @@
             android:id="@+id/nav_historial_citas"
             android:icon="@drawable/ic_menu_historialcitas"
             android:title="@string/menu_historialcita" />
+        <item
+            android:id="@+id/nav_nueva_sede"
+            android:icon="@drawable/ic_menu_estadoconsultas"
+            android:title="@string/new_headquarters" />
     </group>
 </menu>
