@@ -11,6 +11,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import com.example.proyectofinaldam.datastore.UserDataStore
+import com.example.proyectofinaldam.ui.recuperar_contrasena.RecoverPasswordActivity
 import com.example.proyectofinaldam.ui.registrar_paciente.RegistrarPacienteActivity
 import com.google.android.material.snackbar.Snackbar
 import com.google.firebase.firestore.FirebaseFirestore
@@ -34,6 +35,7 @@ class LoginActivity : AppCompatActivity() {
         val etPasswordLogin: EditText = findViewById(R.id.etPasswordLogin)
         val btLogin: Button = findViewById(R.id.btLogin)
         val tvNewAccount: TextView = findViewById(R.id.tvNewAccount)
+        val tvRecoveryPassword: TextView = findViewById(R.id.tvRecoveryPassword)
 
         btLogin.setOnClickListener {
             val dni = etDniLogin.text.toString()
@@ -48,6 +50,9 @@ class LoginActivity : AppCompatActivity() {
 
         tvNewAccount.setOnClickListener {
             startActivity(Intent(this, RegistrarPacienteActivity::class.java))
+        }
+        tvRecoveryPassword.setOnClickListener {
+            startActivity(Intent(this, RecoverPasswordActivity::class.java))
         }
     }
 
