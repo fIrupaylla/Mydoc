@@ -1,0 +1,177 @@
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="16dp">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="16dp">
+
+        <!-- Información de la cita -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:background="@drawable/infottext_border"
+            android:padding="12dp"
+            android:layout_marginBottom="16dp">
+
+            <!-- Doctor -->
+            <TextView
+                android:id="@+id/tvDetalleDoctor"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="4dp"
+                android:text="Doctor: Dr. John Doe"
+                android:textColor="@color/colorPink"
+                android:textSize="16sp"
+                android:textStyle="bold" />
+
+            <!-- Fecha -->
+            <TextView
+                android:id="@+id/tvDetalleFecha"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Fecha: 10/12/2024"
+                android:textSize="14sp"
+                android:layout_marginBottom="4dp" />
+
+            <!-- Hora -->
+            <TextView
+                android:id="@+id/tvDetalleHora"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Hora: 10:00 AM"
+                android:textSize="14sp"
+                android:layout_marginBottom="4dp" />
+
+            <!-- Dirección -->
+            <TextView
+                android:id="@+id/tvDetalleDireccion"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Dirección: Clínica MyDoc, Av. Javier Prado 123, Lima"
+                android:textSize="14sp"
+                android:layout_marginBottom="4dp" />
+
+            <!-- Especialidad -->
+            <TextView
+                android:id="@+id/tvDetalleEspecialidad"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Especialidad: Cardiología"
+                android:textSize="14sp" />
+        </LinearLayout>
+
+        <!-- Título de la calificación -->
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Calificación de la atención"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            android:layout_marginBottom="8dp" />
+
+        <!-- Estrellas para calificar -->
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginBottom="16dp">
+
+            <ImageView
+                android:id="@+id/star1"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:src="@drawable/ic_star_empty"
+                android:contentDescription="Estrella 1" />
+
+            <ImageView
+                android:id="@+id/star2"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:src="@drawable/ic_star_empty"
+                android:contentDescription="Estrella 2" />
+
+            <ImageView
+                android:id="@+id/star3"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:src="@drawable/ic_star_empty"
+                android:contentDescription="Estrella 3" />
+
+            <ImageView
+                android:id="@+id/star4"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:src="@drawable/ic_star_empty"
+                android:contentDescription="Estrella 4" />
+
+            <ImageView
+                android:id="@+id/star5"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:src="@drawable/ic_star_empty"
+                android:contentDescription="Estrella 5" />
+        </LinearLayout>
+
+        <!-- Título de recomendaciones -->
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Recomendaciones"
+            android:textSize="16sp"
+            android:layout_marginBottom="8dp" />
+
+        <!-- Campo de texto para recomendaciones -->
+        <EditText
+            android:id="@+id/etRecomendaciones"
+            android:layout_width="match_parent"
+            android:layout_height="100dp"
+            android:hint="Escribe tus recomendaciones aquí"
+            android:background="@drawable/edittext_border"
+            android:padding="8dp"
+            android:gravity="top" />
+
+        <!-- Espacio entre elementos -->
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="16dp" />
+
+        <!-- Título de comentarios adicionales -->
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Comentarios adicionales"
+            android:textSize="16sp"
+            android:layout_marginBottom="8dp" />
+
+        <!-- Campo de texto para comentarios adicionales -->
+        <EditText
+            android:id="@+id/etComentarios"
+            android:layout_width="match_parent"
+            android:layout_height="100dp"
+            android:hint="Escribe tus comentarios adicionales aquí"
+            android:background="@drawable/edittext_border"
+            android:padding="8dp"
+            android:gravity="top" />
+
+        <!-- Espacio entre elementos -->
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="16dp" />
+
+        <!-- Botón para enviar -->
+        <Button
+            android:id="@+id/btnEnviar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Enviar"
+            android:backgroundTint="@color/green"
+            android:textColor="@android:color/white"
+            android:layout_marginTop="16dp" />
+
+    </LinearLayout>
+</ScrollView>

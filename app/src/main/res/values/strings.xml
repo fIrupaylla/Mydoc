@@ -22,7 +22,7 @@
     <string name="menu_reservarcita">Reservar Cita</string>
     <string name="menu_visualizarcita">Visualizar Cita</string>
     <string name="menu_historialcita">Historial de Citas</string>
-<!-- TODO: Remove or change this placeholder text -->
+    <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="forgot_password">¿Olvidaste tu contraseña?</string>
     <string name="create_account">Crear Cuenta</string>
@@ -34,4 +34,6 @@
     <string name="ingrese_su_dni">Ingrese su DNI</string>
     <string name="recuperar_contrase_a">Recuperar Contraseña</string>
     <string name="cancelar">Cancelar</string>
+    <string name="menu_citas_finalizadas">Citas Finalizadas</string>
+    <string name="menu_registrar_horarios">Registrar Horarios</string>
 </resources>

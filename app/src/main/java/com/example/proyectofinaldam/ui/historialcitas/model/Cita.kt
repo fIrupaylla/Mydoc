@@ -8,5 +8,6 @@ data class Cita(
     val especialidad: String = "",
     val descripcion: String = "",
     val direccion: String = "",
-    val estado: String = ""
+    val estado: String = "",
+    val paciente: String = ""
 )
