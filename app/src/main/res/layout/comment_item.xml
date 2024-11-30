@@ -1,0 +1,25 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:background="@drawable/comment_background"
+    android:padding="8dp"
+    android:layout_marginBottom="8dp">
+
+    <TextView
+        android:id="@+id/tvCommentUserName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Usuario: Juan Pérez"
+        android:textSize="14sp"
+        android:textStyle="bold"
+        android:layout_marginBottom="4dp" />
+
+    <TextView
+        android:id="@+id/tvCommentContent"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Comentario: El doctor fue muy atento y profesional."
+        android:textSize="14sp"
+        android:textColor="#333" />
+</LinearLayout>

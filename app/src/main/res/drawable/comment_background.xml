@@ -1,0 +1,14 @@
+<shape xmlns:android="http://schemas.android.com/apk/res/android"
+    android:shape="rectangle">
+
+    <!-- Esquina redondeada -->
+    <corners android:radius="8dp" />
+
+    <!-- Fondo del comentario -->
+    <solid android:color="#F5F5F5" />
+
+    <!-- Borde del comentario -->
+    <stroke
+        android:width="1dp"
+        android:color="#DDDDDD" />
+</shape>

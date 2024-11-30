@@ -18,10 +18,14 @@
         tools:layout="@layout/fragment_estadodeconsultas" />
 
     <fragment
-        android:id="@+id/nav_slideshow"
-        android:name="com.example.proyectofinaldam.ui.slideshow.SlideshowFragment"
-        android:label="@string/menu_slideshow"
-        tools:layout="@layout/fragment_slideshow" />
+        android:id="@+id/nav_citas_finalizadas"
+        android:name="com.example.proyectofinaldam.ui.citas_finalizadas.CitasFinalizadasFragment"
+        android:label="@string/menu_citas_finalizadas"
+        tools:layout="@layout/fragment_citas_finalizadas" >
+        <action
+            android:id="@+id/action_citasFinalizadasFragment_to_notasDoctorFragment"
+            app:destination="@id/notasDoctorFragment" />
+    </fragment>
 
     <fragment
         android:id="@+id/nav_reservarcita"
@@ -49,7 +53,11 @@
         android:id="@+id/detalleCitaFragment"
         android:name="com.example.proyectofinaldam.ui.detalle_cita.DetalleCitaFragment"
         android:label="Detalle de Cita"
-        tools:layout="@layout/fragment_detalle_cita" />
+        tools:layout="@layout/fragment_detalle_cita" >
+        <action
+            android:id="@+id/action_detalleCitaFragment_to_comentariosFragment"
+            app:destination="@id/comentariosFragment" />
+    </fragment>
 
 
     <fragment
@@ -57,5 +65,23 @@
         android:name="com.example.proyectofinaldam.ui.nuevasede.RegistrarSedeFragment"
         android:label="@string/menu_estadoConsultas"
         tools:layout="@layout/fragment_registrar_sede" />
+
+    <fragment
+        android:id="@+id/comentariosFragment"
+        android:name="com.example.proyectofinaldam.ui.comentarios.ComentariosFragment"
+        android:label="Añadir Comentarios"
+        tools:layout="@layout/fragment_comentarios" />
+
+    <fragment
+        android:id="@+id/notasDoctorFragment"
+        android:name="com.example.proyectofinaldam.ui.notas_doctor.NotasDoctorFragment"
+        android:label="Notas del doctor"
+        tools:layout="@layout/fragment_notas_doctor" />
+
+    <fragment
+        android:id="@+id/nav_registrarHorarios"
+        android:name="com.example.proyectofinaldam.ui.registrar_horarios.RegistrarHorariosFragment"
+        android:label="Registrar horarios"
+        tools:layout="@layout/fragment_registrar_horarios" />
 
 </navigation>

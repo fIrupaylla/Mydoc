@@ -8,6 +8,7 @@ import android.graphics.pdf.PdfDocument
 import android.icu.text.SimpleDateFormat
 import android.os.Bundle
 import android.provider.CalendarContract
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -18,7 +19,12 @@ import android.widget.TextView
 import android.widget.Toast
 import androidx.core.content.ContextCompat
 import androidx.core.content.FileProvider
+import androidx.navigation.fragment.findNavController
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import com.example.proyectofinaldam.R
+import com.example.proyectofinaldam.ui.comentarios.adapter.ComentariosAdapter
+import com.example.proyectofinaldam.ui.comentarios.model.Comentario
 import com.example.proyectofinaldam.ui.historialcitas.model.Cita
 import com.google.firebase.firestore.FirebaseFirestore
 import java.io.File
@@ -50,6 +56,7 @@ class DetalleCitaFragment : Fragment() {
     private lateinit var cancelarButton: Button
 
     private val db = FirebaseFirestore.getInstance() // Referencia a Firebase Firestore
+    private lateinit var comentariosAdapter: ComentariosAdapter
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -74,6 +81,15 @@ class DetalleCitaFragment : Fragment() {
 
         // Cargar los datos desde Firebase
         cargarDatosDesdeFirebase(citaId)
+
+        // Configurar el RecyclerView
+        val recyclerView = view.findViewById<RecyclerView>(R.id.recyclerComentarios)
+        recyclerView.layoutManager = LinearLayoutManager(context)
+        comentariosAdapter = ComentariosAdapter(emptyList())
+        recyclerView.adapter = comentariosAdapter
+
+        // Cargar comentarios desde Firebase
+        cargarComentarios(citaId)
 
         return view
     }
@@ -134,6 +150,7 @@ class DetalleCitaFragment : Fragment() {
                                 configurarBotonAvisarme(cita.fecha, cita.hora)
                                 configurarBotonDescargar(cita)
                                 configurarBotonCancelar(citaId)
+                                configurarBotonComentario(cita)
                             }
                         }
                     } else {
@@ -343,5 +360,36 @@ class DetalleCitaFragment : Fragment() {
             e.printStackTrace()
             null
         }
+    }
+
+    private fun configurarBotonComentario(cita: Cita) {
+        val comentarioButton: LinearLayout = requireView().findViewById(R.id.comentarioButton)
+
+        comentarioButton.setOnClickListener {
+            // Crear un Bundle con el ID de la cita
+            val bundle = Bundle().apply {
+                putString("citaId", cita.id) // Asegúrate de que `cita.id` contenga el identificador único
+            }
+
+            // Navegar al ComentariosFragment con el ID de la cita
+            findNavController().navigate(
+                R.id.action_detalleCitaFragment_to_comentariosFragment,
+                bundle
+            )
+        }
+    }
+
+    private fun cargarComentarios(citaId: String) {
+        db.collection("comentarios").whereEqualTo("citaId", citaId)
+            .get()
+            .addOnSuccessListener { querySnapshot ->
+                val comentarios = querySnapshot.documents.mapNotNull { it.toObject(Comentario::class.java) }
+                Log.d("ComentariosFragment", "Comentarios obtenidos: ${comentarios.size}")
+                comentariosAdapter.setComentarios(comentarios)
+            }
+            .addOnFailureListener { exception ->
+                Log.e("ComentariosFragment", "Error al cargar comentarios", exception)
+                Toast.makeText(context, "Error al cargar comentarios.", Toast.LENGTH_SHORT).show()
+            }
     }
 }
