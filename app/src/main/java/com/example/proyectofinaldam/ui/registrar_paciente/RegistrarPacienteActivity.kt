@@ -6,6 +6,7 @@ import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Row
@@ -18,6 +19,11 @@ import androidx.compose.foundation.verticalScroll
 import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.Checkbox
+import androidx.compose.material3.DropdownMenu
+import androidx.compose.material3.DropdownMenuItem
+import androidx.compose.material3.ExperimentalMaterial3Api
+import androidx.compose.material3.ExposedDropdownMenuBox
+import androidx.compose.material3.ExposedDropdownMenuDefaults
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.Text
@@ -45,14 +51,15 @@ class RegistrarPacienteActivity : ComponentActivity() {
 
         setContent {
             MaterialTheme {
-                UserForm { nombres, apellidos, dni, email, phone, password ->
+                UserForm { nombres, apellidos, dni, email, phone, password, role ->
                     checkAndSavePatient(
+                        dni = dni,
                         nombre = nombres,
                         apellido = apellidos,
-                        dni = dni,
                         email = email,
                         phone = phone,
-                        password = password
+                        password = password,
+                        role = role
                     )
                 }
             }
@@ -65,7 +72,9 @@ class RegistrarPacienteActivity : ComponentActivity() {
         dni: String,
         email: String,
         phone: String,
-        password: String
+        password: String,
+        role: String,
+        collection: String // Recibe la colección como argumento
     ) {
         val user = hashMapOf(
             "Nombres" to nombres,
@@ -73,41 +82,49 @@ class RegistrarPacienteActivity : ComponentActivity() {
             "DNI" to dni,
             "Correo" to email,
             "Celular" to phone,
-            "Contraseña" to password
+            "Contraseña" to password,
+            "role" to role
         )
 
-        db.collection("pacientes")
+        db.collection(collection)
             .document(dni)
             .set(user)
             .addOnSuccessListener {
-                Toast.makeText(this, "Datos guardados correctamente", Toast.LENGTH_SHORT).show()
+                Toast.makeText(this, "Datos guardados correctamente en $collection", Toast.LENGTH_SHORT).show()
                 finish()
             }
             .addOnFailureListener { e ->
-                Toast.makeText(this, "Error al guardar datos: ${e.message}", Toast.LENGTH_SHORT)
-                    .show()
+                Toast.makeText(this, "Error al guardar datos: ${e.message}", Toast.LENGTH_SHORT).show()
             }
     }
 
     private fun checkAndSavePatient(
-        dni: String, nombre: String, apellido: String, email: String, phone: String,
-        password: String
+        dni: String,
+        nombre: String,
+        apellido: String,
+        email: String,
+        phone: String,
+        password: String,
+        role: String // Incluimos el rol para determinar la colección
     ) {
-        val db = FirebaseFirestore.getInstance()
-        db.collection("pacientes")
+        val collection = if (role == "Paciente") "pacientes" else "doctores"
+        db.collection(collection)
             .whereEqualTo("DNI", dni)
             .get()
             .addOnSuccessListener { documents ->
                 if (!documents.isEmpty) {
-                    Toast.makeText(this, "El DNI ya está registrado.", Toast.LENGTH_SHORT).show()
+                    Toast.makeText(this, "El DNI ya está registrado en $collection.", Toast.LENGTH_SHORT).show()
                 } else {
+                    // Pasamos el rol a la función saveToFirestore
                     saveToFirestore(
-                        dni = dni,
                         nombres = nombre,
                         apellidos = apellido,
+                        dni = dni,
                         email = email,
                         phone = phone,
-                        password = password
+                        password = password,
+                        role = role,
+                        collection = collection // Aquí pasamos la colección
                     )
                 }
             }
@@ -120,7 +137,8 @@ class RegistrarPacienteActivity : ComponentActivity() {
 }
 
 @Composable
-fun UserForm(onSubmit: (String, String, String, String, String, String) -> Unit) {
+@OptIn(ExperimentalMaterial3Api::class)
+fun UserForm(onSubmit: (String, String, String, String, String, String, String) -> Unit) {
     var dni by remember { mutableStateOf("") }
     var email by remember { mutableStateOf("") }
     var phone by remember { mutableStateOf("") }
@@ -128,21 +146,20 @@ fun UserForm(onSubmit: (String, String, String, String, String, String) -> Unit)
     var confirmPassword by remember { mutableStateOf("") }
     var nombres by remember { mutableStateOf("") }
     var apellidos by remember { mutableStateOf("") }
-    var acceptTerms by remember { mutableStateOf(false) }
-    var acceptSMSAndEmail by remember { mutableStateOf(false) }
-    var showError by remember { mutableStateOf(false) }
-    var errorMessage by remember { mutableStateOf("") }
+    var selectedRole by remember { mutableStateOf("") } // Perfil seleccionado
+    val roles = listOf("Paciente", "Doctor") // Opciones para seleccionar el perfil
+    var expanded by remember { mutableStateOf(false) } // Controla si el menú está abierto o cerrado
     val context = LocalContext.current
 
     Column(
         modifier = Modifier
             .fillMaxSize()
             .padding(16.dp)
-            .verticalScroll(rememberScrollState()),  // Agregar scroll
+            .verticalScroll(rememberScrollState()),
         verticalArrangement = Arrangement.spacedBy(16.dp)
     ) {
         Text(
-            text = "Registrar Paciente",
+            text = "Registrar Usuario",
             style = MaterialTheme.typography.headlineMedium.copy(
                 fontSize = 24.sp,
                 fontWeight = FontWeight.Bold
@@ -192,91 +209,70 @@ fun UserForm(onSubmit: (String, String, String, String, String, String) -> Unit)
             modifier = Modifier.fillMaxWidth(),
             visualTransformation = PasswordVisualTransformation()
         )
-        Row(
-            verticalAlignment = Alignment.CenterVertically
+
+        // Selector de perfil con ExposedDropdownMenuBox
+        ExposedDropdownMenuBox(
+            expanded = expanded,
+            onExpandedChange = { expanded = !expanded } // Controla el abrir/cerrar del menú
         ) {
-            Checkbox(
-                checked = acceptTerms,
-                onCheckedChange = { acceptTerms = it }
+            OutlinedTextField(
+                value = selectedRole,
+                onValueChange = {},
+                label = { Text("Seleccione el perfil") },
+                readOnly = true, // No permite escribir en el campo
+                trailingIcon = { // Icono para indicar que es un menú desplegable
+                    ExposedDropdownMenuDefaults.TrailingIcon(expanded = expanded)
+                },
+                modifier = Modifier
+                    .menuAnchor() // Ancla para el menú desplegable
+                    .fillMaxWidth()
             )
-            Text(
-                text = "Acepto los términos y condiciones",
-                modifier = Modifier.clickable { acceptTerms = !acceptTerms }
-            )
-        }
-        Row(
-            verticalAlignment = Alignment.CenterVertically
-        ) {
-            Checkbox(
-                checked = acceptSMSAndEmail,
-                onCheckedChange = { acceptSMSAndEmail = it }
-            )
-            Text(
-                text = "Acepto recibir SMS y correos electrónicos",
-                modifier = Modifier.clickable { acceptSMSAndEmail = !acceptSMSAndEmail }
-            )
+            ExposedDropdownMenu(
+                expanded = expanded,
+                onDismissRequest = { expanded = false } // Cierra el menú al hacer clic fuera
+            ) {
+                roles.forEach { role ->
+                    DropdownMenuItem(
+                        onClick = {
+                            selectedRole = role
+                            expanded = false // Cierra el menú al seleccionar
+                        },
+                        text = { Text(role) }
+                    )
+                }
+            }
         }
 
         Button(
             onClick = {
-                // Validación de campos y envío
-                when {
-                    nombres.isEmpty() || apellidos.isEmpty() || dni.isEmpty() || email.isEmpty() || phone.isEmpty() || password.isEmpty() || confirmPassword.isEmpty() -> {
-                        errorMessage = "Todos los campos son obligatorios."
-                        showError = true
-                    }
-
-                    !android.util.Patterns.EMAIL_ADDRESS.matcher(email).matches() -> {
-                        errorMessage = "El correo no tiene un formato válido."
-                        showError = true
-                    }
-
-                    password != confirmPassword -> {
-                        errorMessage = "Las contraseñas no coinciden."
-                        showError = true
-                    }
-
-                    !acceptTerms || !acceptSMSAndEmail -> {
-                        errorMessage =
-                            "Debe aceptar los términos y condiciones y permitir recibir SMS y correos."
-                        showError = true
-                    }
-
-                    else -> {
-                        showError = false
-                        onSubmit(nombres, apellidos, dni, email, phone, password)
-                    }
+                if (nombres.isEmpty() || apellidos.isEmpty() || dni.isEmpty() || email.isEmpty() ||
+                    phone.isEmpty() || password.isEmpty() || confirmPassword.isEmpty() || selectedRole.isEmpty()
+                ) {
+                    Toast.makeText(context, "Todos los campos son obligatorios.", Toast.LENGTH_SHORT).show()
+                } else if (password != confirmPassword) {
+                    Toast.makeText(context, "Las contraseñas no coinciden.", Toast.LENGTH_SHORT).show()
+                } else {
+                    onSubmit(nombres, apellidos, dni, email, phone, password, selectedRole)
                 }
             },
             modifier = Modifier
                 .fillMaxWidth()
                 .padding(top = 16.dp),
             colors = ButtonDefaults.buttonColors(
-                containerColor = Color(0xFFF4CFE3)
+                containerColor = Color(0xFF95C34A)
             ),
             shape = RoundedCornerShape(16.dp),
             contentPadding = PaddingValues(12.dp)
         ) {
-            Text(
-                text = "Registrar",
-                color = Color.White
-            )
+            Text(text = "Registrar", color = Color.White)
         }
-        if (showError) {
-            Text(
-                text = errorMessage,
-                color = Color.Red,
-                style = MaterialTheme.typography.bodySmall,
-                modifier = Modifier.padding(top = 8.dp)
-            )
-        }
+
         Button(
             onClick = { (context as? RegistrarPacienteActivity)?.finish() },
             modifier = Modifier
                 .fillMaxWidth()
-                .padding(top = 16.dp)
-        ) { Text(text = "Cancelar") }
-
+        ) {
+            Text(text = "Cancelar")
+        }
     }
-
 }
