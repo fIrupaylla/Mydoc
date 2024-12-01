@@ -45,8 +45,8 @@
         android:label="@string/menu_historialcita"
         tools:layout="@layout/fragment_historial_citas">
         <action
-            android:id="@+id/action_historialCitasFragment_to_detalleCitaFragment"
-            app:destination="@id/detalleCitaFragment" />
+            android:id="@+id/action_historialCitasFragment_to_detalleCitaVistaFragment"
+            app:destination="@id/detalleCitaVistaFragment" />
     </fragment>
 
     <fragment
@@ -83,5 +83,22 @@
         android:name="com.example.proyectofinaldam.ui.registrar_horarios.RegistrarHorariosFragment"
         android:label="Registrar horarios"
         tools:layout="@layout/fragment_registrar_horarios" />
+
+    <fragment
+        android:id="@+id/nav_citas_programadas"
+        android:name="com.example.proyectofinaldam.ui.citas_programadas.CitasProgramadasFragment"
+        android:label="Citas Programadas"
+        tools:layout="@layout/fragment_citas_programadas" >
+        <action
+            android:id="@+id/action_CitasProgramadasFragment_to_detalleCitaFragment"
+            app:destination="@id/detalleCitaFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/detalleCitaVistaFragment"
+        android:name="com.example.proyectofinaldam.ui.detalle_cita_vista.DetalleCitaVistaFragment"
+        android:label="Detalle de Cita"
+        tools:layout="@layout/fragment_detalle_cita_vista" >
+    </fragment>
 
 </navigation>

@@ -45,7 +45,7 @@ class HistorialCitasFragment : Fragment() {
 
             // Navegar al DetalleCitaFragment con el Bundle
             findNavController().navigate(
-                R.id.action_historialCitasFragment_to_detalleCitaFragment,
+                R.id.action_historialCitasFragment_to_detalleCitaVistaFragment,
                 bundle
             )
         }

@@ -9,10 +9,6 @@
             android:icon="@drawable/ic_menu_camera"
             android:title="@string/menu_home" />
         <item
-            android:id="@+id/nav_estadoConsultas"
-            android:icon="@drawable/informe_medico"
-            android:title="@string/menu_estadoConsultas" />
-        <item
             android:id="@+id/nav_reservarcita"
             android:icon="@drawable/ic_menu_reservarcita"
             android:title="@string/menu_reservarcita" />
@@ -26,21 +22,12 @@
             android:icon="@drawable/ic_menu_historialcitas"
             android:title="@string/menu_historialcita" />
         <item
-            android:id="@+id/nav_nueva_sede"
-            android:icon="@drawable/ic_menu_estadoconsultas"
-            android:title="@string/new_headquarters" />
-        <item
             android:id="@+id/nav_citas_programadas"
             android:icon="@drawable/ic_menu_historialcitas"
             android:title="@string/menu_citas_programadas" />
         <item
-            android:id="@+id/nav_citas_finalizadas"
-            android:icon="@drawable/ic_menu_historialcitas"
-            android:title="@string/menu_citas_finalizadas" />
-
-        <item
-            android:id="@+id/nav_registrarHorarios"
-            android:icon="@drawable/ic_menu_reservarcita"
-            android:title="@string/menu_registrar_horarios" />
+            android:id="@+id/nav_logout"
+            android:icon="@drawable/ic_logout"
+            android:title="Cerrar sesión" />
     </group>
 </menu>
