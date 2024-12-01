@@ -135,8 +135,9 @@ class EstadoDeConsultasFragment : Fragment() {
         rvActEstCliente.layoutManager = LinearLayoutManager(requireContext())
         rvActEstCliente.adapter = adapter
 
+
         // Cargar datos simulados
-        //cargarDatosSimulados() error!!
+        //cargarDatosSimulados() Se comenta Simulador de carga por error.
 
         // Inicializa Firebase Database
         database = FirebaseDatabase.getInstance().reference.child("citas")
