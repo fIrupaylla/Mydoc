@@ -45,7 +45,7 @@
         <activity android:name=".ui.registrar_paciente.RegistrarPacienteActivity" />
         <activity android:name=".ui.recuperar_contrasena.RecoverPasswordActivity" />
     </application>
-
+    <uses-permission android:name="android.permission.POST_NOTIFICATIONS" />
     <uses-permission android:name="android.permission.WRITE_CALENDAR" />
     <uses-permission android:name="android.permission.READ_CALENDAR" />
 
