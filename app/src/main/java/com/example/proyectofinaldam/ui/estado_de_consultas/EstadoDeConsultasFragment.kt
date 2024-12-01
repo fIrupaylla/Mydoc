@@ -173,7 +173,7 @@ class EstadoDeConsultasFragment : Fragment() {
             descripcion = "Cita de ejemplo creada automáticamente.",
             direccion = "Av. Javier Prado 2445, SAN BORJA",
             doctor = "Dr. Daniel Delgado",
-            edad = "27 años",
+            edad = "25 años",
             especialidad = "Medicina General",
             estado = "programada",
             fecha = "01/01/2024", // Esta es la fecha de la cita
