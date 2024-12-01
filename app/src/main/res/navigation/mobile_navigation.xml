@@ -28,8 +28,8 @@
     </fragment>
 
     <fragment
-        android:id="@+id/nav_reservarcita"
-        android:name="com.example.proyectofinaldam.ui.reservarcita.ReservarcitaFragment"
+        android:id="@+id/nav_registrar_cita"
+        android:name="com.example.proyectofinaldam.ui.registrar_cita.RegistrarCitaFragment"
         android:label="@string/menu_reservarcita"
         tools:layout="@layout/fragment_reservarcita" />
 
