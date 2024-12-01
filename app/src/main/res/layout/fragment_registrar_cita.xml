@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="16dp">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:gravity="center_horizontal">
+
+        <!-- Selector de Fecha -->
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Seleccionar Fecha"
+            android:textSize="16sp"
+            android:layout_marginBottom="8dp" />
+
+        <EditText
+            android:id="@+id/et_fecha_cita"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Seleccione una fecha"
+            android:focusable="false"
+            android:background="@drawable/edittext_border"
+            android:padding="12dp" />
+
+        <!-- Selector de Hora -->
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Seleccionar Hora"
+            android:textSize="16sp"
+            android:layout_marginTop="16dp"
+            android:layout_marginBottom="8dp" />
+
+        <EditText
+            android:id="@+id/et_hora_cita"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Seleccione una hora"
+            android:focusable="false"
+            android:background="@drawable/edittext_border"
+            android:padding="12dp" />
+
+        <!-- Selector de Doctor -->
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Seleccionar Doctor"
+            android:textSize="16sp"
+            android:layout_marginTop="16dp"
+            android:layout_marginBottom="8dp" />
+
+        <AutoCompleteTextView
+            android:id="@+id/actv_doctor"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Seleccione un doctor"
+            android:background="@drawable/edittext_border"
+            android:padding="12dp" />
+
+        <!-- Botón para registrar la cita -->
+        <Button
+            android:id="@+id/btn_registrar_cita"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Registrar Cita"
+            android:layout_marginTop="24dp"
+            android:backgroundTint="@color/green"
+            android:textColor="@android:color/white" />
+    </LinearLayout>
+</ScrollView>

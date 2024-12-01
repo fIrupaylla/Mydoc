@@ -9,7 +9,7 @@
             android:icon="@drawable/ic_menu_camera"
             android:title="@string/menu_home" />
         <item
-            android:id="@+id/nav_reservarcita"
+            android:id="@+id/nav_registrar_cita"
             android:icon="@drawable/ic_menu_reservarcita"
             android:title="@string/menu_reservarcita" />
         <item

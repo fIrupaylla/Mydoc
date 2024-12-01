@@ -66,7 +66,7 @@ class PrincipalActivity : AppCompatActivity() {
         appBarConfiguration = AppBarConfiguration(
             setOf(
                 R.id.nav_home, R.id.nav_estadoConsultas, R.id.nav_citas_finalizadas,
-                R.id.nav_reservarcita, R.id.nav_visualizarcita, R.id.nav_historial_citas, R.id.nav_logout
+                R.id.nav_registrar_cita, R.id.nav_visualizarcita, R.id.nav_historial_citas, R.id.nav_logout
             ), drawerLayout
         )
 
